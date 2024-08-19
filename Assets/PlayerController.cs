@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        GameManager.instance.Eat(other.gameObject);
+        GameManager.instance.PlayerCollide(other.gameObject);
     }
 
     public void ChangeSpeed(float speed)
