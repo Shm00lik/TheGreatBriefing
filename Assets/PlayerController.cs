@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 5f;
+    public Transform rightLimit;
+    public Transform leftLimit;
 
     // Start is called before the first frame update
     void Start()
@@ -15,9 +17,20 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector2 dir = Input.GetKey(KeyCode.A) ? Vector2.left : Input.GetKey(KeyCode.D) ? Vector2.right : Vector2.zero;
-
-        transform.Translate(dir * speed * Time.deltaTime);
+        if (Input.GetKey(KeyCode.D))
+        {
+            if (transform.position.x < rightLimit.position.x)
+            {
+                transform.Translate(Vector2.right * speed * Time.deltaTime);
+            }
+        } 
+        else if (Input.GetKey(KeyCode.A))
+        {
+            if (transform.position.x > leftLimit.position.x)
+            {
+                transform.Translate(Vector2.left * speed * Time.deltaTime);
+            }
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)

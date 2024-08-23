@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FoodController : MonoBehaviour
 {
-
+    private const float ABSOLUT_MIN_Y = -5f;
     // FOOD SETTINGS
     public int value;
 
@@ -24,7 +24,7 @@ public class FoodController : MonoBehaviour
         float speed = GetSpeed(GameManager.instance.foodsState.speedMultiplier, GameManager.instance.foodsState.speedUseRange);
         transform.position -= new Vector3(0, speed * Time.deltaTime);
 
-        if (transform.position.y < -100)
+        if (transform.position.y < ABSOLUT_MIN_Y)
         {
             GameManager.instance.ReplaceFood(this.gameObject);
         }
