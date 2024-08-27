@@ -318,7 +318,7 @@ public class PlayerLevel
             case Level.MANAGER:
                 return "MANAGER";
             case Level.DATA_PROCESSOR:
-                return "CPU";
+                return "DATA PROCESSOR";
             case Level.TABLEAU_GURU:
                 return "TABLEAU GURU";
             default:

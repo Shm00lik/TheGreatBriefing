@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TalController : MonoBehaviour
 {
-    private const float ABSOLUT_MIN_Y = -7f;
+    private const float ABSOLUT_MIN_Y = -6f;
 
     [Min(0)]
     public float baseSpeed;

@@ -1,8 +1,11 @@
+using TMPro;
 using UnityEngine;
 
 public class CheatsManager : MonoBehaviour
 {
     public string cheatCode = "GARIBI";  // Replace with your desired cheat code
+    public GameObject textIndicator;
+
     private string input = "";
     private bool enabledCheats = false;
 
@@ -14,16 +17,17 @@ public class CheatsManager : MonoBehaviour
 
     public void ToggleCheats()
     {
-
         if (!enabledCheats)
         {
             PlayerPrefs.SetInt("enableCheats", 1);
             enabledCheats = true;
+            textIndicator.SetActive(true);
             Debug.Log("Cheat activated!");
         } else
         {
             PlayerPrefs.SetInt("enableCheats", 0);
             enabledCheats = false;
+            textIndicator.SetActive(false);
             Debug.Log("Cheat disabled!");
         }
     }
