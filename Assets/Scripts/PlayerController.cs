@@ -17,19 +17,54 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.D))
+        Vector2 dir = Vector2.zero;
+
+        if (Input.touchCount > 0)
         {
-            if (transform.position.x < rightLimit.position.x)
+            Vector2 touchPos = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+
+            if (touchPos.x > 0)
             {
-                transform.Translate(Vector2.right * speed * Time.deltaTime);
+                dir = Vector2.right;
             }
-        } 
-        else if (Input.GetKey(KeyCode.A))
+            else
+            {
+                dir = Vector2.left;
+            }   
+
+            if (transform.position.x < rightLimit.position.x && dir == Vector2.right)
+            {
+                transform.Translate(dir * speed * Time.deltaTime);
+            }
+            else if (transform.position.x > leftLimit.position.x && dir == Vector2.left)
+            {
+                transform.Translate(dir * speed * Time.deltaTime);
+            }
+
+            return;
+        }
+
+        dir = new Vector2(Input.GetAxis("Horizontal"), 0);
+
+        if (dir.x > 0.2f)
         {
-            if (transform.position.x > leftLimit.position.x)
-            {
-                transform.Translate(Vector2.left * speed * Time.deltaTime);
-            }
+            dir = Vector2.right;
+        }
+        else if (dir.x < -0.2f)
+        {
+            dir = Vector2.left;
+        } else
+        {
+            dir = Vector2.zero;
+        }
+
+        if (transform.position.x < rightLimit.position.x && dir.x > 0)
+        {
+            transform.Translate(dir * speed * Time.deltaTime);
+        }
+        if (transform.position.x > leftLimit.position.x && dir.x < 0)
+        {
+            transform.Translate(dir * speed * Time.deltaTime);
         }
     }
 
